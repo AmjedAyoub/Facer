@@ -1,0 +1,30 @@
+<div class="logging-header">
+  <mat-card>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 center">
+
+        </div>
+        <div class="col-md-6 center">
+          <mat-card class="center">
+            <form [formGroup]="form" (submit)="onLoggingIn()" class="center">
+              <mat-form-field appearance="fill">
+                <mat-label>Username</mat-label>
+                <input matInput type="text" formControlName="username" placeholder="Username" #input>
+                <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+                <mat-error *ngIf="form.get('username').invalid">Please enter a valid username/email.</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" placeholder="password" type="password">
+                <mat-error *ngIf="form.get('password').invalid">Please enter a valid password.</mat-error>
+              </mat-form-field>
+              <br>
+              <button mat-raised-button color="accent" type="submit">Log In</button>
+            </form>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

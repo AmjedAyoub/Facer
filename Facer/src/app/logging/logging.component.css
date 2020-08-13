@@ -1,0 +1,25 @@
+.logging-header{
+  width: 95%;
+  margin: auto;
+}
+
+mat-card{
+  margin: auto;
+  min-height: 20rem;
+  background-color: rgba(231, 137, 243, 0.445);
+  color: black;
+}
+
+.center{
+  text-align: center;
+}
+
+mat-form-field,
+input {
+  margin: auto;
+  width: 80%;
+}
+
+.mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
