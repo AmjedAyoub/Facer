@@ -1,13 +1,11 @@
 .logging-header{
   width: 95%;
-  margin: auto;
+  margin: 1rem auto;
 }
 
 mat-card{
   margin: auto;
-  min-height: 20rem;
-  background-color: rgba(231, 137, 243, 0.445);
-  color: black;
+  background-color: rgba(133, 35, 146, 0.493);
 }
 
 .center{
@@ -18,8 +16,14 @@ mat-form-field,
 input {
   margin: auto;
   width: 80%;
+  background-color: initial;
 }
 
 .mat-form-field + .mat-form-field {
   margin-left: 8px;
+}
+
+.signUp{
+  padding: 0.8rem;
+  margin: auto 4rem;
 }
