@@ -1,68 +1,176 @@
 <div class="logging-header">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-8 center">
-        <mat-card class="center signUp">
-          <form [formGroup]="signUpForm" (submit)="onSigningUp()" class="center">
-            <div class="row">
-              <div class="col-md-6">
-                <mat-form-field appearance="fill">
-                  <mat-label>First Name</mat-label>
-                  <input matInput type="text" formControlName="firstName" placeholder="First Name">
-                  <mat-error *ngIf="signUpForm.get('firstName').invalid">Please enter a valid name.</mat-error>
-                </mat-form-field>
+      <div class="col-md-7 center">
+        <form [formGroup]="signUpForm" (submit)="onSigningUp()" class="center">
+
+          <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group has-success  has-danger">
+                      <input type="text" class="form-control" placeholder="First Name" formControlName="firstName" [ngClass]="
+                      signUpForm.get('firstName').errors &&
+                      signUpForm.get('firstName').touched ?
+                      'is-invalid' : signUpForm.get('firstName').valid ? 'is-valid' : ''
+                    ">
+                      <div class="invalid-feedback">Sorry, First name is required</div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group has-success  has-danger">
+                      <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName"
+                      [ngClass]="signUpForm.get('lastName').errors && signUpForm.get('lastName').touched ?
+                      'is-invalid' : signUpForm.get('lastName').valid ? 'is-valid' : '' ">
+                      <div class="invalid-feedback">Last name is required?</div>
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                  aria-expanded="true" aria-controls="collapseOne" *ngIf="signUpForm.get('firstName').valid || signUpForm.get('lastName').valid">
+                  Continue signing up
+                </button>
               </div>
-              <div class="col-md-6">
-                <mat-form-field appearance="fill">
-                  <mat-label>Last Name</mat-label>
-                  <input matInput type="text" formControlName="lastName" placeholder="Last Name">
-                  <mat-error *ngIf="signUpForm.get('lastName').invalid">Please enter a valid name.</mat-error>
-                </mat-form-field>
+
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+
+                  <div class="row">
+                    <div class="col-md-12">
+
+                      <div class="form-group has-success  has-danger">
+                        <label class="control-label" style="margin-right:10px">I am a: </label>
+                        <label class="radio-inline">
+                          <input class="mr-3" type="radio" value="male" formControlName="gender" />Male
+                        </label>
+                        <label class="radio-inline ml-3">
+                          <input class="mr-3" type="radio" value="female" formControlName="gender" />Female
+                        </label>
+                      </div>
+
+                      <div class="form-group has-success  has-danger">
+                        <input [ngClass]="
+                        signUpForm.get('knownAs').errors &&
+                        signUpForm.get('knownAs').touched ?
+                        'is-invalid' : signUpForm.get('knownAs').valid ? 'is-valid' : ''
+                      " class="form-control" placeholder="Known as" formControlName="knownAs" />
+                        <div class="invalid-feedback">
+                          Known as is required
+                        </div>
+                      </div>
+
+                      <div class="form-group has-success  has-danger">
+                        <input  [ngClass]="
+                        signUpForm.get('dateOfBirth').errors &&
+                        signUpForm.get('dateOfBirth').touched ?
+                        'is-invalid' : signUpForm.get('dateOfBirth').valid ? 'is-valid' : ''
+                      " class="form-control" placeholder="Date of Birth" formControlName="dateOfBirth" type="text"
+                          bsDatepicker />
+                        <div class="invalid-feedback">
+                          Date of Birth is required
+                        </div>
+                      </div>
+
+                      <div class="form-group" [ngClass]="signUpForm.get('city').valid ? 'has-success' : 'has-danger' ">
+                        <input  [ngClass]="
+                        signUpForm.get('city').errors &&
+                        signUpForm.get('city').touched ?
+                        'is-invalid' : signUpForm.get('city').valid ? 'is-valid' : '' "
+                        class="form-control" placeholder="City" formControlName="city" />
+                        <div class="invalid-feedback">
+                          City is required
+                        </div>
+                      </div>
+
+                      <div class="form-group has-success  has-danger">
+                        <input  [ngClass]="
+                        signUpForm.get('country').errors &&
+                        signUpForm.get('country').touched ?
+                        'is-invalid' : signUpForm.get('country').valid ? 'is-valid' : ''
+                      " class="form-control" placeholder="Country" formControlName="country" />
+                        <div class="invalid-feedback">
+                          Country is required
+                        </div>
+                      </div>
+
+                      <div class="form-group has-success has-danger">
+                        <input type="text" class="form-control" placeholder="Email / Username" formControlName="email" [ngClass]="
+                        signUpForm.get('email').errors &&
+                        signUpForm.get('email').touched ?
+                        'is-invalid' : signUpForm.get('email').valid ? 'is-valid' : ''
+                      ">
+                        <div class="valid-feedback">Success!</div>
+                        <div class="invalid-feedback">Sorry, username should be a valid email</div>
+                      </div>
+
+                      <div class="form-group has-success has-danger">
+                        <input type="password" class="form-control" placeholder="Password" formControlName="password" [ngClass]="
+                        signUpForm.get('password').errors &&
+                        signUpForm.get('password').touched ?
+                        'is-invalid' : signUpForm.get('password').valid ? 'is-valid' : ''
+                      ">
+                        <div class="invalid-feedback">Sorry, password must be at least 8 characters</div>
+                      </div>
+
+                      <div class="form-group has-success has-danger">
+                        <input type="password" class="form-control" placeholder="Confirm password"
+                          formControlName="repassword" [ngClass]="
+                          (signUpForm.get('repassword').errors &&
+                          signUpForm.get('repassword').touched) ||
+                          (signUpForm.get('repassword').touched &&
+                          signUpForm.hasError('mismatch')) ?
+                          'is-invalid' : signUpForm.get('repassword').valid && !signUpForm.hasError('mismatch') ? 'is-valid' : ''
+                        ">
+                        <div class="valid-feedback">Success! passwords are match</div>
+                        <div class="invalid-feedback">Sorry, passwords must match!</div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <button mat-raised-button class="btn btn-warning" type="submit" [disabled]="!signUpForm.valid">Sign Up</button>
+                </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                <mat-form-field appearance="fill">
-                  <mat-label>E-mail</mat-label>
-                  <input matInput type="text" formControlName="email" placeholder="E-mail">
-                  <mat-error *ngIf="signUpForm.get('email').invalid">Please enter a valid E-mail.</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                  <mat-label>Password</mat-label>
-                  <input matInput formControlName="password" placeholder="password" type="password">
-                  <mat-error *ngIf="signUpForm.get('password').invalid">Please enter a valid password.</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                  <mat-label>Re-enter your password</mat-label>
-                  <input matInput formControlName="repassword" placeholder="Re-enter your password" type="password">
-                  <mat-error *ngIf="signUpForm.get('password').value != signUpForm.get('repassword').value">Password
-                    doesn't match!.</mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            <br>
-            <button mat-raised-button color="accent" type="submit">Sign Up</button>
-          </form>
-        </mat-card>
+          </div>
+        </form>
       </div>
+
+      <div class="col-md-0.5 center vColumn">
+        <div class="vl"></div>
+      </div>
+
       <div class="col-md-4 center">
-        <mat-card class="center">
-          <form [formGroup]="signInForm" (submit)="onLoggingIn()" class="center">
-            <mat-form-field appearance="fill">
-              <mat-label>E-mail</mat-label>
-              <input matInput type="text" formControlName="email" placeholder="E-mail">
-              <mat-error *ngIf="signInForm.get('email').invalid">Please enter a valid E-mail.</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-              <mat-label>Password</mat-label>
-              <input matInput formControlName="password" placeholder="password" type="password">
-              <mat-error *ngIf="signInForm.get('password').invalid">Please enter a valid password.</mat-error>
-            </mat-form-field>
-            <br>
-            <button mat-raised-button color="accent" type="submit">Sign In</button>
-          </form>
-        </mat-card>
+        <form [formGroup]="signInForm" (submit)="onSigningIn()" class="center">
+          <div class="form-group has-success  has-danger">
+            <input type="text" class="form-control" placeholder="@Username" formControlName="email" [ngClass]="
+              signInForm.get('email').errors &&
+              signInForm.get('email').touched ?
+              'is-invalid' : signInForm.get('email').valid ? 'is-valid' : ''
+            ">
+            <div class="invalid-feedback">Sorry, username should be a valid email</div>
+          </div>
+
+          <div class="form-group has-success has-danger">
+            <input type="password" class="form-control" placeholder="Password" formControlName="password" [ngClass]="
+              signInForm.get('password').errors &&
+              signInForm.get('password').touched ?
+              'is-invalid' : signInForm.get('password').valid ? 'is-valid' : ''
+            ">
+            <div class="invalid-feedback">Sorry, password is incorrect</div>
+          </div>
+          <br>
+          <button mat-raised-button class="btn btn-success" type="submit">Sign In</button>
+        </form>
       </div>
     </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <app-list></app-list>
+    </div>
+    <div class="col-md-6"></div>
   </div>
 </div>

@@ -1,0 +1,21 @@
+.bg-secondary {
+  background-color: #A991D4 !important;
+}
+
+.mainImg{
+  height: 300px;
+}
+
+
+#postFile {
+  visibility: hidden;
+}
+
+.image-preview {
+  height: 5rem;
+  margin: 1rem 0;
+}
+
+.image-preview img {
+  height: 100%;
+}

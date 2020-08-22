@@ -1,0 +1,20 @@
+<div>
+  <div class="card mb-3" style="width: 100%;"
+  *ngFor="let post of posts; let i = index;"
+  [ngClass]="i % 2 === 0 ? 'border-info' : 'border-warning'">
+    <div class="card-header">{{ 'getUserName(post.creator)' }}</div>
+    <div class="card-body">
+      <h4 class="card-title">{{ post.title }}</h4>
+      <div class="card card2" *ngIf="post.imagePath != null">
+        <div class="card-img-wrapper">
+          <img
+            class="card-img-top"
+            src="{{ post.imagePath }}"
+            alt="{{ post.title }}"
+          />
+        </div>
+      </div>
+      <p class="card-text">{{ post.content }}</p>
+    </div>
+  </div>
+</div>

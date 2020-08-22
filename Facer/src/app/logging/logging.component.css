@@ -1,29 +1,31 @@
 .logging-header{
-  width: 95%;
-  margin: 1rem auto;
+  background-color: rgba(241, 214, 245, 0.493);
 }
 
-mat-card{
+form{
   margin: auto;
-  background-color: rgba(133, 35, 146, 0.493);
+  margin-top: 3rem;
+  padding-bottom: 2rem;
 }
 
 .center{
   text-align: center;
 }
 
-mat-form-field,
-input {
-  margin: auto;
-  width: 80%;
-  background-color: initial;
-}
-
-.mat-form-field + .mat-form-field {
-  margin-left: 8px;
-}
-
 .signUp{
-  padding: 0.8rem;
-  margin: auto 4rem;
+  /* padding: 0.8rem; */
+  /* margin: auto 4rem; */
+}
+
+.vl {
+  border-left: 3px solid rgb(187, 2, 178);
+  height: 270px;
+}
+
+.vColumn{
+  width: 10px;
+}
+
+#accordionExample, #headingOne, #collapseOne, .card-body, .card {
+  background-color: transparent;
 }

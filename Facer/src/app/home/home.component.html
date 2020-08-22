@@ -1,0 +1,96 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card text-white bg-secondary mt-4" style="max-width: 99%;">
+        <div class="card-header">{{ user?.firstName }} {{ user?.lastName }}
+          <span class="mr-1">
+            <img src="{{ user?.photoUrl || '../../../../assets/user.png' }}" alt=""
+              class="img-circle rounded-circle mainImg">
+          </span>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">From {{ user?.city }}, {{ user?.country }} </h4>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <ul class="nav nav-tabs mt-4">
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#home">General Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#profile">My Facers Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#photos">Photos</a>
+        </li>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane active show" id="home">
+
+          <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header center" id="headingOne">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                  aria-expanded="true" aria-controls="collapseOne">
+                  New Post?
+                </button>
+              </div>
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                  <div>
+                    <form [formGroup]="addPostForm" (submit)="onSavePost()" class="center">
+                      <div class="form-group has-success  has-danger">
+                        <input type="text" class="form-control" placeholder="Post Title" formControlName="title"
+                          [ngClass]="
+            addPostForm.get('title').errors &&
+            addPostForm.get('title').touched ?
+              'is-invalid' : addPostForm.get('title').valid ? 'is-valid' : ''
+            ">
+                        <div class="invalid-feedback">Please enter a post title.</div>
+                      </div>
+                      <div>
+                        <button mat-raised-button type="button" (click)="filePicker.click()">Pick Image</button>
+                        <input id="postFile" type="file" #filePicker (change)="onImagePicked($event)">
+                      </div>
+                      <div class="image-preview"
+                        *ngIf="imagePreview !== '' && imagePreview && addPostForm.get('image').valid">
+                        <img [src]="imagePreview" [alt]="addPostForm.value.title">
+                      </div>
+                      <div class="form-group has-success  has-danger">
+                        <textarea rows="4" class="form-control" placeholder="Post content" formControlName="content"
+                          [ngClass]="
+            addPostForm.get('content').errors &&
+            addPostForm.get('content').touched ?
+              'is-invalid' : addPostForm.get('content').valid ? 'is-valid' : ''
+            "></textarea>
+                        <div class="invalid-feedback">Please enter a post content.</div>
+                      </div>
+                      <button mat-raised-button type="submit" [disabled]="!addPostForm.valid">Save Post</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <app-list></app-list>
+        </div>
+        <div class="tab-pane fade" id="profile">
+          <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
+            labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
+            twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
+            cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+        </div>
+        <div class="tab-pane fade" id="photos">
+          <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny
+            pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard
+            locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid
+            8-bit cred pitchfork.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
