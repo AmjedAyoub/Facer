@@ -2,12 +2,15 @@ const Post = require("../models/post");
 
 exports.createPost = (req, res, next) => {
   const url = req.protocol + "://" + req.get("host");
-  console.log(req.file);
+  // console.log(req.file);
+
+  let d = new Date();
   const post = new Post({
     title: req.body.title,
     content: req.body.content,
     imagePath: req.file != null ? url + "/images/" + req.file.filename : null,
-    creator: req.userData.userId
+    creator: req.userData.userId,
+    createdAt: d
   });
   post
     .save()
@@ -56,7 +59,7 @@ exports.updatePost = (req, res, next) => {
 };
 
 exports.getPosts = (req, res, next) => {
-  Post.find()
+  Post.find().sort({createdAt: -1})
     .then(posts => {
       res.status(200).json({
         message: "Posts fetched successfully!",

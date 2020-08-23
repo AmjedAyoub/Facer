@@ -5,8 +5,6 @@ import { Post } from '../_models/post.model';
 import { PostsService } from '../_services/post.service';
 import { AuthService } from '../_services/auth.service';
 import { UserService } from '../_services/user.service';
-import { User } from '../_models/user.model';
-import { async } from 'rxjs/internal/scheduler/async';
 
 @Component({
   selector: 'app-list',
@@ -15,15 +13,11 @@ import { async } from 'rxjs/internal/scheduler/async';
 })
 export class ListComponent implements OnInit, OnDestroy {
   posts: any[] = [];
+  private postsSub: Subscription;
   user: any;
   isLoading = false;
-  totalPosts = 0;
-  postsPerPage = 2;
-  currentPage = 1;
-  pageSizeOptions = [1, 2, 5, 10];
   userIsAuthenticated = false;
   userId: string;
-  private postsSub: Subscription;
   private authStatusSub: Subscription;
 
   constructor(
@@ -40,19 +34,8 @@ export class ListComponent implements OnInit, OnDestroy {
       .getPostUpdateListener()
       .subscribe((postData: { posts: Post[] }) => {
         this.isLoading = false;
-        this.posts = postData.posts.reverse();
-        console.log('Posts before  ' + this.posts);
+        this.posts = postData.posts;
       });
-
-    // for (let post of this.posts) {
-    //   const creatorName = this.getUserName(post.creator);
-    //   console.log(creatorName);
-    //   post = {
-    //     post,
-    //     creatorName,
-    //   };
-    // }
-    // console.log('Posts after  ' + this.posts);
     this.userIsAuthenticated = this.authService.getIsAuth();
     this.authStatusSub = this.authService
       .getAuthStatusListener()

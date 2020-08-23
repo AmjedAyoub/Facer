@@ -2,16 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
   Validators,
-  FormGroup,
-  FormBuilder,
-  NgForm,
+  FormGroup
 } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
 
 import { UserService } from '../_services/user.service';
 import { PostsService } from '../_services/post.service';
+import { Subscription } from 'rxjs';
+import { Post } from '../_models/post.model';
 
-import { User } from '../_models/user.model';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +22,8 @@ export class HomeComponent implements OnInit {
   addPostForm: FormGroup;
   imagePreview: string;
   uploader: FileUploader;
+  posts: any[] = [];
+  private postsSub: Subscription;
 
   constructor(
     private userService: UserService,
@@ -30,6 +31,13 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.postsService.getPosts();
+    this.postsSub = this.postsService
+      .getPostUpdateListener()
+      .subscribe((postData: { posts: Post[] }) => {
+        this.posts = postData.posts;
+      });
+
     const id = localStorage.getItem('userId');
     this.userService.getUser(id);
     this.userService.getAuthUser().subscribe((res) => {

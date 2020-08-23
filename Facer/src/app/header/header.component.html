@@ -10,8 +10,8 @@
         <li class="nav-item" *ngIf="isLoggedIn">
           <a class="nav-link" routerLink='facers'>Facers</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink='about'>About</a>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link" routerLink=''>Messages</a>
         </li>
       </ul>
 

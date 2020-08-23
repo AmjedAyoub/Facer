@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder, NgForm } from '@angular/forms';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { AuthService } from '../_services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logging',
@@ -13,10 +14,13 @@ export class LoggingComponent implements OnInit {
   signUpForm: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    if(!this.authService.autoAuthUser()){
+      if (this.authService.getIsAuth)
+      {
+        this.router.navigate(['home']);
+      }
       this.bsConfig = {
         containerClass: 'theme-red'
       };
@@ -31,7 +35,6 @@ export class LoggingComponent implements OnInit {
       });
 
       this.createSignUpForm();
-    }
   }
 
   createSignUpForm () {

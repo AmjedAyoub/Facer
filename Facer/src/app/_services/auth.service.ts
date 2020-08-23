@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 
 import { AlertifyService } from '../_services/alertify.service';
@@ -22,13 +22,14 @@ export class AuthService {
   private userId: string;
   private authStatusListener = new Subject<boolean>();
 
-  constructor(private http: HttpClient, private alertify: AlertifyService, private router: Router) {}
+  constructor(private http: HttpClient, private alertify: AlertifyService, private router: Router, private route: ActivatedRoute) {}
 
   getToken() {
     return this.token;
   }
 
   getIsAuth() {
+    this.autoAuthUser();
     return this.isAuthenticated;
   }
 
@@ -101,7 +102,7 @@ export class AuthService {
       this.userId = authInformation.userId;
       this.setAuthTimer(expiresIn / 1000);
       this.authStatusListener.next(true);
-      this.router.navigate(['home']);
+      console.log(this.route);
       return true;
     }
   }

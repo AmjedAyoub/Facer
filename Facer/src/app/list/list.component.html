@@ -1,10 +1,10 @@
 <div>
-  <div class="card mb-3" style="width: 100%;"
+  <div class="card mb-3" style="width: 100%; max-height: 400px;"
   *ngFor="let post of posts; let i = index;"
   [ngClass]="i % 2 === 0 ? 'border-info' : 'border-warning'">
-    <div class="card-header">{{ 'getUserName(post.creator)' }}</div>
+    <h4 class="card-header">{{ 'Name' }}</h4>
     <div class="card-body">
-      <h4 class="card-title">{{ post.title }}</h4>
+      <h5 class="card-title">{{ post.title }}</h5>
       <div class="card card2" *ngIf="post.imagePath != null">
         <div class="card-img-wrapper">
           <img
@@ -14,7 +14,7 @@
           />
         </div>
       </div>
-      <p class="card-text">{{ post.content }}</p>
+      <h6 class="card-text">{{ post.content }}</h6>
     </div>
   </div>
 </div>

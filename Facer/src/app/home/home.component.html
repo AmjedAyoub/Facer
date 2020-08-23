@@ -18,17 +18,23 @@
     <div class="col-md-9">
       <ul class="nav nav-tabs mt-4">
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#home">General Posts</a>
+          <a class="nav-link" data-toggle="tab" href="#General-Posts">General Posts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#profile">My Facers Posts</a>
+          <a class="nav-link" data-toggle="tab" href="#My-Facers-Posts">My Facers Posts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#photos">Photos</a>
+          <a class="nav-link" data-toggle="tab" href="#My-Posts">My Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#My-photos">My Photos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#My-profile">My Profile</a>
         </li>
       </ul>
       <div id="myTabContent" class="tab-content">
-        <div class="tab-pane active show" id="home">
+        <div class="tab-pane active show" id="General-Posts">
 
           <div class="accordion" id="accordionExample">
             <div class="card">
@@ -52,7 +58,7 @@
                         <div class="invalid-feedback">Please enter a post title.</div>
                       </div>
                       <div>
-                        <button mat-raised-button type="button" (click)="filePicker.click()">Pick Image</button>
+                        <button type="button" (click)="filePicker.click()">Pick Image</button>
                         <input id="postFile" type="file" #filePicker (change)="onImagePicked($event)">
                       </div>
                       <div class="image-preview"
@@ -68,7 +74,7 @@
             "></textarea>
                         <div class="invalid-feedback">Please enter a post content.</div>
                       </div>
-                      <button mat-raised-button type="submit" [disabled]="!addPostForm.valid">Save Post</button>
+                      <button type="submit" [disabled]="!addPostForm.valid">Save Post</button>
                     </form>
                   </div>
                 </div>
@@ -78,13 +84,22 @@
           <hr>
           <app-list></app-list>
         </div>
-        <div class="tab-pane fade" id="profile">
+        <div class="tab-pane fade" id="My-Facers-Posts">
           <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
             labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
             twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
             cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
         </div>
-        <div class="tab-pane fade" id="photos">
+        <div class="tab-pane fade" id="My-Posts">
+          <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
+            labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
+            twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
+            cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+        </div>
+        <div class="tab-pane fade" id="My-photos">
+          <app-photo></app-photo>
+        </div>
+        <div class="tab-pane fade" id="My-profile">
           <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny
             pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard
             locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid

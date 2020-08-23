@@ -41,12 +41,13 @@ export class PostsService {
           };
         })
       )
-      .subscribe(async transformedPostData => {
+      .subscribe(transformedPostData => {
         // console.log('transformedPostData   ' + JSON.stringify(transformedPostData));
         this.posts = (transformedPostData).posts;
         this.postsUpdated.next({
           posts: [...this.posts]
         });
+
       });
   }
 
@@ -77,7 +78,9 @@ export class PostsService {
         postData
       )
       .subscribe(responseData => {
-        this.router.navigate(['/']);
+        this.postsUpdated.next({
+          posts: [...this.posts ]
+        });
       });
   }
 
