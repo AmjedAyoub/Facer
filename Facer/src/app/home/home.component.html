@@ -9,9 +9,13 @@
           </span>
         </div>
         <div class="card-body">
-          <h4 class="card-title">From {{ user?.city }}, {{ user?.country }} </h4>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
+          <h5 class="card-title">Last Active {{ user?.lastActive }} </h5>
+          <h5 class="card-text">From {{ user?.city }}, {{ user?.country }} </h5>
+          <h5 class="card-text">Known As {{ user?.knownAs }} </h5>
+          <h5 class="card-text">Age {{ user?.dateOfBirth }} </h5>
+          <h6 class="card-text">Interests {{ user?.interests }} </h6>
+          <h6 class="card-text">Introduction {{ user?.introduction }} </h6>
+          <h6 class="card-text">Looking For {{ user?.lookingFor }} </h6>
         </div>
       </div>
     </div>
@@ -58,7 +62,7 @@
                         <div class="invalid-feedback">Please enter a post title.</div>
                       </div>
                       <div>
-                        <button type="button" (click)="filePicker.click()">Pick Image</button>
+                        <button class="btn btn-primary" type="button" (click)="filePicker.click()">Pick Image</button>
                         <input id="postFile" type="file" #filePicker (change)="onImagePicked($event)">
                       </div>
                       <div class="image-preview"
@@ -74,7 +78,7 @@
             "></textarea>
                         <div class="invalid-feedback">Please enter a post content.</div>
                       </div>
-                      <button type="submit" [disabled]="!addPostForm.valid">Save Post</button>
+                      <button class="btn btn-primary" type="submit" [disabled]="!addPostForm.valid">Save Post</button>
                     </form>
                   </div>
                 </div>
@@ -97,6 +101,34 @@
             cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
         </div>
         <div class="tab-pane fade" id="My-photos">
+          <div class="accordion" id="accordionExample1">
+            <div class="card">
+              <div class="card-header center" id="headingOne1">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne1"
+                  aria-expanded="true" aria-controls="collapseOne1">
+                  New Photo?
+                </button>
+              </div>
+              <div id="collapseOne1" class="collapse" aria-labelledby="headingOne1" data-parent="#accordionExample1">
+                <div class="card-body">
+                  <div>
+                    <form [formGroup]="uploadImgForm" (submit)="onUploadImg()" class="center">
+                      <div>
+                        <button class="btn btn-primary" type="button" (click)="filePicker2.click()">Pick Image</button>
+                        <input id="postFile" type="file" #filePicker2 (change)="onImagePicked2($event)">
+                      </div>
+                      <div class="image-preview"
+                        *ngIf="imagePreview !== '' && imagePreview2 && uploadImgForm.get('image').valid">
+                        <img [src]="imagePreview2">
+                      </div>
+                      <button class="btn btn-primary" type="submit" [disabled]="!uploadImgForm.valid">Upload</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
           <app-photo></app-photo>
         </div>
         <div class="tab-pane fade" id="My-profile">

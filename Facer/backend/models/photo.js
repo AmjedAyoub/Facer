@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 
 const postSchema = mongoose.Schema({
   url: { type: String, required: true },
-  description: { type: String, require: false },
   dateAdded: { type: Date, required: false },
-  isMain: { type: Boolean, required: false }
+  isMain: { type: Boolean, required: false },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
 });
 
 module.exports = mongoose.model("Photo", postSchema);

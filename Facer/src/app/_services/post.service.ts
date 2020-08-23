@@ -42,12 +42,10 @@ export class PostsService {
         })
       )
       .subscribe(transformedPostData => {
-        // console.log('transformedPostData   ' + JSON.stringify(transformedPostData));
         this.posts = (transformedPostData).posts;
         this.postsUpdated.next({
           posts: [...this.posts]
         });
-
       });
   }
 
@@ -72,16 +70,11 @@ export class PostsService {
     if (image !== null){
       postData.append('image', image, title);
     }
-    this.http
+    return this.http
       .post<{ message: string; post: Post }>(
         BACKEND_URL,
         postData
       )
-      .subscribe(responseData => {
-        this.postsUpdated.next({
-          posts: [...this.posts ]
-        });
-      });
   }
 
   updatePost(id: string, title: string, content: string, image: File | string) {

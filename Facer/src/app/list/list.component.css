@@ -6,12 +6,16 @@
 }
 
 .card2 img {
+  max-width: 150px;
+  max-height: 150px;
   transform: scale(1.0, 1.0);
   transition-duration: 500ms;
   transition-timing-function: ease-out
 }
 
 .card-img-wrapper {
+  max-width: 150px;
+  max-height: 150px;
   overflow: hidden;
   position: relative;
 }
